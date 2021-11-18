@@ -16,7 +16,7 @@ class ImportCategoryController {
 
     } catch (error) {
 
-      return response.status(500).json({ Error: error.message });
+      return response.status(400).json({ Error: error.message });
       
     }
   }
