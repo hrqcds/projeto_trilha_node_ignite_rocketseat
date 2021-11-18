@@ -9,7 +9,7 @@ class UserRepository implements iUserRepository {
   constructor() {
     this.repository = getRepository(User);
   }
-  async findByUsername(email: string): Promise<User> {
+  async findByEmail(email: string): Promise<User> {
     const user = await this.repository.findOne({ where: { email } });
 
     return user;
