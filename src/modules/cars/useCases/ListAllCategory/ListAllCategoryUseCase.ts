@@ -11,7 +11,7 @@ class ListAllCategoryUseCase {
     private repository: iCategoryRepository
   ) {}
 
-  async service(): Promise<Category[]> {
+  async execute(): Promise<Category[]> {
     const categories = await this.repository.list();
 
     return categories;

@@ -13,7 +13,7 @@ class CreateCategoryUseCase {
     private repository: iCategoryRepository
   ) {}
 
-  async service({
+  async execute({
     name,
     description,
   }: iCreateCategoryRequestDTO): Promise<void> {

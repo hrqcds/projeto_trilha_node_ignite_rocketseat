@@ -9,7 +9,7 @@ class ListAllSpecificationUseCase {
     private repository: iSpecificationRepository
   ) {}
 
-  async service(): Promise<Specification[]> {
+  async execute(): Promise<Specification[]> {
     const specifications = await this.repository.list();
 
     return specifications;

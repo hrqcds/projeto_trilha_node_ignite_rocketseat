@@ -11,7 +11,7 @@ class ImportCategoryController {
 
     try {
 
-      await importCategoryUseCase.service({ file });
+      await importCategoryUseCase.execute({ file });
       return response.status(201).send();
 
     } catch (error) {

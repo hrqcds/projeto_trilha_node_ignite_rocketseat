@@ -8,7 +8,7 @@ class ListAllSpecificationController {
       ListAllSpecificationUseCase
     );
 
-    const specifications = await listAllSpecificationUseCase.service();
+    const specifications = await listAllSpecificationUseCase.execute();
 
     return response.json(specifications);
   }

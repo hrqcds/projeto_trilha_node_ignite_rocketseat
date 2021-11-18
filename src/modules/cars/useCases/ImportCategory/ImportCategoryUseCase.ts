@@ -57,7 +57,7 @@ class ImportCategoryUseCase {
     });
   }
 
-  async service({ file }: iRequest): Promise<void> {
+  async execute({ file }: iRequest): Promise<void> {
     // função que trata o arquivo e retorna um array tratado
     const fileCategory = await this.loadingCSV({ file });
 

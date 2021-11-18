@@ -11,7 +11,7 @@ class CreateSpecificationUseCase {
     private repository: iSpecificationRepository
   ) {}
 
-  async service({
+  async execute({
     name,
     description,
   }: iCreateSpecificationRequestDTO): Promise<void> {
