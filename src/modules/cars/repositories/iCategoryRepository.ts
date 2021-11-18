@@ -5,6 +5,7 @@ interface iCreateCategoryRequestDTO {
   description: string;
 }
 
+// Interface para as funções do meu repositorio, quais ações meus useCases podem fazer no banco
 interface iCategoryRepository {
   create({ name, description }: iCreateCategoryRequestDTO): Promise<void>;
   list(): Promise<Category[]>;

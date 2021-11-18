@@ -6,6 +6,7 @@ class ImportCategoryController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { file } = request;
 
+    // Injetavel do tsyringe para informar que vai usar o repositorio
     const importCategoryUseCase = container.resolve(ImportCategoryUseCase);
 
     try {

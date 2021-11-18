@@ -5,10 +5,14 @@ import {
   iSpecificationRepository,
 } from "../iSpecificationRepository";
 
+// Classe implemetada da minha interface, precisa ter todas as funções criadas na interface
 class SpecificationRepository implements iSpecificationRepository {
+
+  // repositorio privado para comunicação com banco, apenas as funções daqui podem fazer esse acesso
   private repository: Repository<Specification>;
 
   constructor() {
+    // Iniciando o repositorio
     this.repository = getRepository(Specification);
   }
   async create({

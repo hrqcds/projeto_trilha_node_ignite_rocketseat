@@ -5,10 +5,13 @@ import {
   iCreateCategoryRequestDTO,
 } from "../iCategoryRepository";
 
+// Classe implemetada da minha interface, precisa ter todas as funções criadas na interface
 class CategoryRepository implements iCategoryRepository {
+  // repositorio privado para comunicação com banco, apenas as funções daqui podem fazer esse acesso
   private repository: Repository<Category>;
 
   constructor() {
+    // Iniciando o repositorio
     this.repository = getRepository(Category);
   }
 

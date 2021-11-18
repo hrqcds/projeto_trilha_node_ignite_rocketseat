@@ -4,9 +4,11 @@ import {
   iCreateCategoryRequestDTO,
 } from "../../repositories/iCategoryRepository";
 
+// Injetavel do tsyringe para informar que vai usar o repositorio
 @injectable()
 class CreateCategoryUseCase {
   constructor(
+    // Instanciando o repositorio para uso do serviço
     @inject("CategoryRepository")
     private repository: iCategoryRepository
   ) {}

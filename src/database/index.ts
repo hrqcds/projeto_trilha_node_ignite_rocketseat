@@ -7,7 +7,7 @@ interface iOptions {
 getConnectionOptions().then((options) => {
   const newOptions = options as iOptions;
 
-  newOptions.host = "db_ignite";
+  newOptions.host = "db_ignite"; // nome da imagem do banco
 
   createConnection({ ...options });
 });

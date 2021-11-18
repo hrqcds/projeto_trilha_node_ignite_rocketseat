@@ -6,6 +6,7 @@ class CreateCategoryController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { name, description } = request.body;
 
+    // Instanciando o injectable do tsyringe para uso do contorller
     const createCategoryUseCase = container.resolve(CreateCategoryUseCase);
 
     try {

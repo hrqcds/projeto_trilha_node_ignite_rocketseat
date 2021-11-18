@@ -1,7 +1,7 @@
 import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
 import { v4 as uuid } from "uuid";
 
-@Entity("specifications")
+@Entity("specifications") // Decorator pra informar que essa classe representa a tabela specifications do banco
 class Specification {
   @PrimaryColumn()
   id?: string;
