@@ -40,6 +40,11 @@ export async function ensureAuthenticated(
       throw new AppError("User does not exist", 401);
     }
 
+    // inserindo usuario na requisição
+    request.user = {
+      id: user.id,
+    };
+
     // se exister, seguir aplicação
     next();
   } catch (error) {
