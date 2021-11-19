@@ -5,7 +5,7 @@ import { ImportCategoryController } from "../modules/cars/useCases/ImportCategor
 
 import multer from "multer";
 // instanciando multer
-const upload = multer({dest: "../tmp"});
+const upload = multer({ dest: "../../tmp" });
 
 const CategoriesRoutes = Router();
 

@@ -5,6 +5,7 @@
 // Criar controller
 
 import { inject, injectable } from "tsyringe";
+import { deleteFile } from "../../../../utils/file";
 import { iUserRepository } from "../../repositories/iUserRepository";
 
 interface iRequest {
@@ -21,6 +22,11 @@ class UpdateUserAvatarUseCase {
 
   async execute({ user_id, avatarFile }: iRequest): Promise<void> {
     const user = await this.repository.findById(user_id);
+
+    // verificando se já existe avatar
+    if (user.avatar) {
+      await deleteFile(`./tmp/avatar/${user.avatar}`);
+    }
 
     user.avatar = avatarFile;
 
