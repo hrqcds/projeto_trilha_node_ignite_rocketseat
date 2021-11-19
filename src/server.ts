@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import express, { NextFunction, Request, Response } from "express";
-import "express-async-errors"
+import "express-async-errors" // lib para identificação de exceções (throw new ...) nas rotas
 import "./database";
 import "./shared/container";
 import swaggerUi from "swagger-ui-express";
@@ -17,12 +17,16 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerOptions));
 
 app.use(routes);
 
+// Middleware de controle derros
 app.use(
   (err: Error, request: Request, response: Response, next: NextFunction) => {
+    // Se error for um AppError
     if (err instanceof AppError) {
+      // retorna as instancias inicializadas na classe AppError
       return response.status(err.statusCode).json({ message: err.message });
     }
 
+    // retorna um erro de server não detectado
     return response.status(500).json({
       status: "error",
       message: `Internal server error - ${err.message}`,

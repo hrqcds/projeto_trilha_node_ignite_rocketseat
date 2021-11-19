@@ -28,6 +28,8 @@ class AuthenticateUserUseCase {
     const user = await this.repository.findByEmail(email);
 
     if (!user) {
+      // Classe AppError para controle de erros
+      // Recebe uma mensagem e um statusCode
       throw new AppError("Email or Password incorrect!", 401);
     }
 
