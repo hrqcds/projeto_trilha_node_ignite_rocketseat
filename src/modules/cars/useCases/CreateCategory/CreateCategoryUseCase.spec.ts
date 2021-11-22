@@ -1,22 +1,52 @@
-// informa o que o testa tá fazendo
-// recebece um titulo e uma arrow function
-describe("Criar Categoria", () => {
-  // função que executa o teste
-  // Recebe uma descrição e uma função
-  it("Espero que 2 + 2 seja 4", () => {
-    // Testa acontece aqui
-    const soma = 2 + 2;
-    const resultado = 4;
+import { AppError } from "../../../../errors/AppError";
+import { CategoryRepositoryInMemory } from "../../repositories/inMemory/CategoryRepositoryInMemory";
+import { CreateCategoryUseCase } from "./CreateCategoryUseCase";
 
-    // Resultado esperado
-    // diversas funções dentro do expect como toBe()
-    expect(soma).toBe(resultado); // toBe == Seja -> traduzindo: Espero que minha soma seja igual ao resultado
+let categoryRepositoryInMemory: CategoryRepositoryInMemory;
+let createCategoryUseCase: CreateCategoryUseCase;
+
+describe("Create Category", () => {
+  // antes de algum teste executa uma função
+  beforeEach(() => {
+    categoryRepositoryInMemory = new CategoryRepositoryInMemory();
+    createCategoryUseCase = new CreateCategoryUseCase(
+      categoryRepositoryInMemory
+    );
   });
 
-  it("Espero que 2 + 2 != 5", () => {
-    const soma = 2 + 2;
-    const resultado = 5;
+  it("should be able to create a new category", async () => {
+    const category = {
+      name: "category test",
+      description: "category description test",
+    };
 
-    expect(soma).not.toBe(resultado); // not.toBe == não seja -> traduzindo: Espero que minha soma não seja igual ao resultado
+    await createCategoryUseCase.execute(category);
+
+    const categoryCreated = await categoryRepositoryInMemory.findByName(
+      category.name
+    );
+
+    console.log(categoryCreated);
+
+    expect(categoryCreated).toHaveProperty("id");
+  });
+
+  it("should not be able to create a new category with name exist", async () => {
+    expect(async () => {
+      const category = {
+        name: "category test",
+        description: "category description test",
+      };
+
+      await createCategoryUseCase.execute({
+        name: category.name,
+        description: category.description,
+      });
+
+      await createCategoryUseCase.execute({
+        name: category.name,
+        description: category.description,
+      });
+    }).rejects.toBeInstanceOf(AppError);
   });
 });
