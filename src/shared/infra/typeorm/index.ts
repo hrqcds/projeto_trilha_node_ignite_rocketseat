@@ -1,13 +1,11 @@
-import { createConnection, getConnectionOptions } from "typeorm";
+import { Connection, createConnection, getConnectionOptions } from "typeorm";
 
-interface iOptions {
-  host: string;
-}
+export default async (host = "db_ignite"): Promise<Connection> => {
+  const defaultOption = await getConnectionOptions();
 
-getConnectionOptions().then((options) => {
-  const newOptions = options as iOptions;
-
-  newOptions.host = "db_ignite"; // nome da imagem do banco
-
-  createConnection({ ...options });
-});
+  return createConnection(
+    Object.assign(defaultOption, {
+      host,
+    })
+  );
+};
