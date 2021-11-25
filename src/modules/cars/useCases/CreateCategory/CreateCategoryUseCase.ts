@@ -1,9 +1,9 @@
 import { inject, injectable } from "tsyringe";
-import { AppError } from "../../../../errors/AppError";
+import { AppError } from "@shared/errors/AppError";
 import {
   iCategoryRepository,
   iCreateCategoryRequestDTO,
-} from "../../repositories/iCategoryRepository";
+} from "@modules/cars/repositories/iCategoryRepository";
 
 // Injetavel do tsyringe para informar que vai usar o repositorio
 @injectable()

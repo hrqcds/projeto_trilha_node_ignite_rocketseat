@@ -1,13 +1,12 @@
 import { getRepository, Repository } from "typeorm";
-import { Specification } from "../../entities/Specification";
+import { Specification } from "../entities/Specification";
 import {
   iCreateSpecificationRequestDTO,
   iSpecificationRepository,
-} from "../iSpecificationRepository";
+} from "@modules/cars/repositories/iSpecificationRepository";
 
 // Classe implemetada da minha interface, precisa ter todas as funções criadas na interface
 class SpecificationRepository implements iSpecificationRepository {
-
   // repositorio privado para comunicação com banco, apenas as funções daqui podem fazer esse acesso
   private repository: Repository<Specification>;
 

@@ -1,9 +1,9 @@
 import { getRepository, Repository } from "typeorm";
-import { Category } from "../../entities/Category";
 import {
   iCategoryRepository,
   iCreateCategoryRequestDTO,
-} from "../iCategoryRepository";
+} from "@modules/cars/repositories/iCategoryRepository";
+import { Category } from "../entities/Category";
 
 // Classe implemetada da minha interface, precisa ter todas as funções criadas na interface
 class CategoryRepository implements iCategoryRepository {

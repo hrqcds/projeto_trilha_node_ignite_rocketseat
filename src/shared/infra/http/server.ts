@@ -1,12 +1,12 @@
 import "reflect-metadata";
 import express, { NextFunction, Request, Response } from "express";
-import "express-async-errors" // lib para identificação de exceções (throw new ...) nas rotas
-import "./database";
-import "./shared/container";
+import "express-async-errors"; // lib para identificação de exceções (throw new ...) nas rotas
+import "../typeorm";
+import "../../container";
 import swaggerUi from "swagger-ui-express";
-import swaggerOptions from "./swagger.json";
-import { routes } from "./routes";
-import { AppError } from "./errors/AppError";
+import swaggerOptions from "../../../swagger.json";
+import { routes } from "@shared/infra/http/routes";
+import { AppError } from "@shared/errors/AppError";
 
 const app = express();
 

@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { Category } from "../../entities/Category";
+import { Category } from "../../infra/typeorm/entities/Category";
 import { iCategoryRepository } from "../../repositories/iCategoryRepository";
 
 // Informando que minha classe é instancia pelo tsyringe
