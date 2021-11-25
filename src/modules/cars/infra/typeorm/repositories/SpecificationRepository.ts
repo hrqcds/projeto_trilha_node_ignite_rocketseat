@@ -14,6 +14,7 @@ class SpecificationRepository implements iSpecificationRepository {
     // Iniciando o repositorio
     this.repository = getRepository(Specification);
   }
+
   async create({
     name,
     description,
