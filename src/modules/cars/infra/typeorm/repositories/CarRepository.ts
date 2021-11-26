@@ -9,9 +9,6 @@ class CarRepository implements iCarRepository {
   constructor() {
     this.repository = getRepository(Car);
   }
-  findAvailable(): Promise<Car[]> {
-    throw new Error("Method not implemented.");
-  }
 
   async create({
     name,
@@ -36,8 +33,36 @@ class CarRepository implements iCarRepository {
 
     return car;
   }
+
   async findByLicensePlate(license_plate: string): Promise<Car> {
     return await this.repository.findOne({ where: { license_plate } });
+  }
+
+  async findAvailable(
+    category_id?: string,
+    brand?: string,
+    name?: string
+  ): Promise<Car[]> {
+    // QueryBuilder -> recebe um nome para as buscas
+    const carsQuery = await this.repository
+      .createQueryBuilder("c")
+      .where("c.available = :available", { available: true }); // busca todos os available com valor true
+
+    if (category_id) {
+      carsQuery.andWhere("c.category_id = :category_id", { category_id }); // se existir categoria busca todas com aquele id
+    }
+
+    if (brand) {
+      carsQuery.andWhere("c.brand = :brand", { brand }); // se existir marca busca todas com aquela marca
+    }
+
+    if (name) {
+      carsQuery.andWhere("c.name = :name", { name }); // se existir nome busca todos com aquele nome
+    }
+
+    const cars = await carsQuery.getMany();
+
+    return cars;
   }
 }
 
