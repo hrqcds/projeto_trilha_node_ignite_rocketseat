@@ -1,4 +1,4 @@
-interface iCarDTO {
+interface iCreateCarDTO {
   name: string;
   description: string;
   daily_rate: number;
@@ -7,4 +7,4 @@ interface iCarDTO {
   brand: string;
   category_id: string;
 }
-export { iCarDTO };
+export { iCreateCarDTO };

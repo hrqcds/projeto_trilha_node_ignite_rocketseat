@@ -1,4 +1,4 @@
-import { iCarDTO } from "@modules/cars/dtos/iCarDTO";
+import { iCreateCarDTO } from "@modules/cars/dtos/iCreateCarDTO";
 import { iCarRepository } from "@modules/cars/repositories/iCarRepository";
 import { getRepository, Repository } from "typeorm";
 import { Car } from "../entities/Car";
@@ -9,6 +9,9 @@ class CarRepository implements iCarRepository {
   constructor() {
     this.repository = getRepository(Car);
   }
+  findAvailable(): Promise<Car[]> {
+    throw new Error("Method not implemented.");
+  }
 
   async create({
     name,
@@ -18,7 +21,7 @@ class CarRepository implements iCarRepository {
     category_id,
     fine_amount,
     license_plate,
-  }: iCarDTO): Promise<Car> {
+  }: iCreateCarDTO): Promise<Car> {
     const car = this.repository.create({
       name,
       description,

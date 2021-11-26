@@ -12,9 +12,9 @@ O carro deve ser cadastrado por padrão com disponibilidade.
 
 **RF**
 Deve ser possível listar todos os carros disponíveis
-Deve ser possível listar todos oscarros disponíveis pelo nome da categoria
-Deve ser possível listar todos oscarros disponíveis pelo nome da marca
-Deve ser possível listar todos oscarros disponíveis pelo nome do carro
+Deve ser possível listar todos os carros disponíveis pelo nome da categoria
+Deve ser possível listar todos os carros disponíveis pelo nome da marca
+Deve ser possível listar todos os carros disponíveis pelo nome do carro
 
 **RN**
 O usuário não precisa estar logado no sistema

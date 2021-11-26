@@ -1,4 +1,4 @@
-import { iCarDTO } from "@modules/cars/dtos/iCarDTO";
+import { iCreateCarDTO } from "@modules/cars/dtos/iCreateCarDTO";
 import { Car } from "@modules/cars/infra/typeorm/entities/Car";
 import { iCarRepository } from "@modules/cars/repositories/iCarRepository";
 import { AppError } from "@shared/errors/AppError";
@@ -19,7 +19,7 @@ class CreateCarUseCase {
     category_id,
     fine_amount,
     license_plate,
-  }: iCarDTO): Promise<Car> {
+  }: iCreateCarDTO): Promise<Car> {
     const carAlreadyExist = await this.repository.findByLicensePlate(
       license_plate
     );
