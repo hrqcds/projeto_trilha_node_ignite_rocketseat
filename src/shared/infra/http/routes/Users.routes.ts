@@ -4,6 +4,7 @@ import uploadConfig from "@config/upload";
 import { CreateUserController } from "@modules/accounts/useCases/CreateUser/CreateUserController";
 import { UpdateUserAvatarController } from "@modules/accounts/useCases/UpdateUserAvatar/UpdateUserAvatarController";
 import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
+import { ensureAdmin } from "../middlewares/ensureAdmin";
 
 const UsersRoutes = Router();
 
@@ -18,10 +19,16 @@ const upload = multer(uploadConfig.upload("./tmp/avatar"));
 UsersRoutes.patch(
   "/avatar",
   ensureAuthenticated,
+  ensureAdmin,
   upload.single("avatar"),
   updateUserController.handle
 );
 
-UsersRoutes.post("/", createUserController.handle);
+UsersRoutes.post(
+  "/",
+  ensureAuthenticated,
+  ensureAdmin,
+  createUserController.handle
+);
 
 export { UsersRoutes };
