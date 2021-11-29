@@ -13,6 +13,8 @@ class CarRepositoryInMemory implements iCarRepository {
     category_id,
     fine_amount,
     license_plate,
+    specification,
+    id,
   }: iCreateCarDTO): Promise<Car> {
     const car = new Car();
 

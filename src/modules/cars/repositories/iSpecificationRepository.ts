@@ -7,9 +7,13 @@ interface iCreateSpecificationRequestDTO {
 
 // Interface para as funções do meu repositorio, quais ações meus useCases podem fazer no banco
 interface iSpecificationRepository {
-  create({ name, description }: iCreateSpecificationRequestDTO): Promise<void>;
+  create({
+    name,
+    description,
+  }: iCreateSpecificationRequestDTO): Promise<Specification>;
   list(): Promise<Specification[]>;
   findByName(name: string): Promise<Specification>;
+  findByIds(ids: string[]): Promise<Specification[]>;
 }
 
 export { iSpecificationRepository, iCreateSpecificationRequestDTO };
