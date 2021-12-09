@@ -11,6 +11,7 @@ export class CreateRentals1639056079329 implements MigrationInterface {
           { name: "user_id", type: "uuid" },
           { name: "start_date", type: "timestamp", default: "now()" },
           { name: "end_date", type: "timestamp" },
+          { name: "expected_return_date", type: "timestamp" },
           { name: "total", type: "numeric" },
           { name: "created_at", type: "timestamp", default: "now()" },
           { name: "updated_at", type: "timestamp", default: "now()" },
