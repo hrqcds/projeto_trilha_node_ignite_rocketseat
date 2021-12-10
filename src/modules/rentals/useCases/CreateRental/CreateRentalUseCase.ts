@@ -39,27 +39,15 @@ class CreateRentalUseCase {
       throw new AppError("There's a rental in progress for user!");
     }
 
-    // data recebida em utc
-    const expectedReturnDateFormat = dayjs(expected_return_date).toDate();
-
-    const dateNow = dayjs().toDate(); // data de hoje em utc para comparação
-
     const dateProvider = new DayJsDateProvider();
 
-    const valideDate = await dateProvider.compare(
-      dateNow,
-      expectedReturnDateFormat
+    const compare = dateProvider.compareInHours(
+      dateProvider.dateNow(),
+      expected_return_date
     );
 
-    // // comparando a data esperada com a data atual em horas
-    // const compare = dayjs(expectedReturnDateFormat).diff(dateNow, "hours");
-
-    // if (compare < 24) {
-    //   throw new AppError("Não é possível agendar, prazo muito curto");
-    // }
-
-    if (valideDate) {
-      throw new AppError("Não é possível agendar, prazo muito curto");
+    if (compare < 24) {
+      throw new AppError("Data desgraçada");
     }
 
     const rental = await this.rentalsRepository.create({

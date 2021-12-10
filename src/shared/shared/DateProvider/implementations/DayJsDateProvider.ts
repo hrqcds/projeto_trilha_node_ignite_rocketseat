@@ -4,13 +4,17 @@ import utc from "dayjs/plugin/utc";
 dayjs.extend(utc);
 
 class DayJsDateProvider implements iDateProvider {
-  async compare(startDate: Date, endDate: Date): Promise<any> {
-    const start = dayjs(startDate).utc().local().format();
-    const end = dayjs(endDate).utc().local().format();
+  compareInHours(startDate: Date, endDate: Date): number {
+    const start = this.convertToUTC(startDate);
+    const end = this.convertToUTC(endDate);
 
-    const compare = dayjs(end).diff(start, "hours");
-
-    return compare < 24 ? true : false;
+    return dayjs(end).diff(start, "hours");
+  }
+  convertToUTC(date: Date): string {
+    return dayjs(date).utc().local().format();
+  }
+  dateNow(): Date {
+    return dayjs().toDate();
   }
 }
 
