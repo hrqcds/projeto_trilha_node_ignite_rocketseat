@@ -2,12 +2,7 @@ import { Rental } from "@modules/rentals/infra/typeorm/entities/Rental";
 import { iRentalsRepository } from "@modules/rentals/repositories/iRentalRepository";
 import { AppError } from "@shared/errors/AppError";
 
-import dayjs from "dayjs";
-// import utc from "dayjs/plugin/utc";
-
-// dayjs.extend(utc); // usar o formato utc pra comparação de datas
-
-import { DayJsDateProvider } from "@shared/shared/DateProvider/implementations/DayJsDateProvider";
+import { DayJsDateProvider } from "@shared/container/providers/DateProvider/implementations/DayJsDateProvider";
 
 interface iRequest {
   user_id: string;
