@@ -52,8 +52,29 @@ describe("Create Category Controller", () => {
         Authorization: `Bearer ${token}`,
       }); // Seta a autorização para o usuário
 
-    console.log(response);
-
     expect(response.status).toBe(201);
+  });
+
+  it("Shoud be able to create a new category with same name", async () => {
+    // logando com o usuário
+    const responseToken = await request(app)
+      .post("/sessions")
+      .send({ email: "admin@rentx.com.br", password: "admin" });
+
+    const token = responseToken.body.token;
+
+    // função send para enviar os dados no request
+    // retorna um response para o test
+    const response = await request(app)
+      .post("/categories")
+      .send({
+        name: "name category Supertest",
+        description: "description category Supertest",
+      }) // Seta os dados enviados
+      .set({
+        Authorization: `Bearer ${token}`,
+      }); // Seta a autorização para o usuário
+
+    expect(response.status).toBe(400);
   });
 });
