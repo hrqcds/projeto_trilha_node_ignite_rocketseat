@@ -4,6 +4,7 @@ import { AppError } from "@shared/errors/AppError";
 
 import { DayJsDateProvider } from "@shared/container/providers/DateProvider/implementations/DayJsDateProvider";
 import { inject, injectable } from "tsyringe";
+import { iDateProvider } from "@shared/container/providers/DateProvider/iDateProvider";
 
 interface iRequest {
   user_id: string;
@@ -15,7 +16,10 @@ interface iRequest {
 class CreateRentalUseCase {
   constructor(
     @inject("RentalRepository")
-    private rentalsRepository: iRentalsRepository
+    private rentalsRepository: iRentalsRepository,
+
+    @inject("DayJsDateProvider")
+    private dateProvider: iDateProvider
   ) {}
 
   async execute({
@@ -39,10 +43,8 @@ class CreateRentalUseCase {
       throw new AppError("There's a rental in progress for user!");
     }
 
-    const dateProvider = new DayJsDateProvider();
-
-    const compare = dateProvider.compareInHours(
-      dateProvider.dateNow(),
+    const compare = this.dateProvider.compareInHours(
+      this.dateProvider.dateNow(),
       expected_return_date
     );
 

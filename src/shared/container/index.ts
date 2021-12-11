@@ -12,6 +12,8 @@ import { CarImagesRepository } from "@modules/cars/infra/typeorm/repositories/Ca
 import { iRentalsRepository } from "@modules/rentals/repositories/iRentalRepository";
 import { RentalRepository } from "@modules/rentals/infra/typeorm/repositories/RentalRepository";
 
+import "@shared/container/providers";
+
 container.registerSingleton<iRentalsRepository>(
   "RentalRepository",
   RentalRepository
