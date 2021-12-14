@@ -27,9 +27,19 @@ describe("Create Rental", () => {
   });
 
   it("Should be able to create a new rental", async () => {
+    const car = await carsRepository.create({
+      name: "Car",
+      description: "descriptionCar",
+      license_plate: "license_plateCar",
+      fine_amount: 100,
+      daily_rate: 60,
+      brand: "brandCar",
+      category_id: "category",
+    });
+    
     const rental = await createRentalUseCase.execute({
       user_id: "123456",
-      car_id: "121212",
+      car_id: car.id,
       expected_return_date: dayAdd24Hours,
     });
 
@@ -57,7 +67,7 @@ describe("Create Rental", () => {
 
       const rental = await createRentalUseCase.execute({
         user_id: "123456",
-        car_id: "121212",
+        car_id: car.id,
         expected_return_date: dayAdd24Hours,
       });
     }).rejects.toBeInstanceOf(AppError);

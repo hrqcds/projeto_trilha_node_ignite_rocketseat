@@ -64,7 +64,7 @@ class CreateRentalUseCase {
 
     await this.carsRepository.updateAvailable(car_id, false);
 
-    const car = await this.carsRepository.findById(car_id);
+    const car = this.carsRepository.findById(car_id);
 
     console.log(car);
 
