@@ -9,13 +9,19 @@ class RentalRepositoryInMemory implements iRentalsRepository {
     car_id,
     user_id,
     expected_return_date,
+    end_date,
+    total,
+    id,
   }: iCreateRentalDTO): Promise<Rental> {
     const rental = new Rental();
     Object.assign(rental, {
+      id,
       car_id,
       user_id,
       expected_return_date,
       start_date: new Date(),
+      end_date,
+      total,
       created_date: new Date(),
       updated_at: new Date(),
     });
