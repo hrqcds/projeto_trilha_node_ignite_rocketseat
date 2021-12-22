@@ -13,6 +13,8 @@ import { iRentalsRepository } from "@modules/rentals/repositories/iRentalReposit
 import { RentalRepository } from "@modules/rentals/infra/typeorm/repositories/RentalRepository";
 
 import "@shared/container/providers";
+import { iUsersTokensRepository } from "@modules/accounts/repositories/iUsersTokensRepository";
+import { UsersTokenRepository } from "@modules/accounts/infra/typeorm/repositories/UsersTokenRepository";
 
 container.registerSingleton<iRentalsRepository>(
   "RentalRepository",
@@ -37,3 +39,8 @@ container.registerSingleton<iSpecificationRepository>(
 );
 
 container.registerSingleton<iUserRepository>("UserRepository", UserRepository);
+
+container.registerSingleton<iUsersTokensRepository>(
+  "UserTokenRepository",
+  UsersTokenRepository
+);

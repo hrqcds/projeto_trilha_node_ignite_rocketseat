@@ -26,3 +26,5 @@ class UsersTokenRepository implements iUsersTokensRepository {
     return userToken;
   }
 }
+
+export { UsersTokenRepository };
